@@ -42,5 +42,5 @@ public class Main {
         commentService.publish("nontext", comment);
         commentService.publish("sdsds", comment);
 
-    }+
+    }
 }

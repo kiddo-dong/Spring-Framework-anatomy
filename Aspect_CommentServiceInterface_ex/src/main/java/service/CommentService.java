@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 @Service
 public class CommentService {
     private Logger logger = Logger.getLogger(CommentService.class.getName());
+    // Map<BeanName, Object(Bean)>
     private final Map<String, CommentServiceInterface> commentServiceInterfaceMap;
 
     public CommentService(Map<String, CommentServiceInterface> commentServiceInterfaceMap) {
