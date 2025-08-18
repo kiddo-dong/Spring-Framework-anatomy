@@ -10,7 +10,7 @@ Spring-Core
  - Spring-Core의 전반적인 기술 및 분석
 
 Spring-Boot
- - Servlet Container(tomcat)이 포함된 웹 앱을 위한 스프링부트
+ - Servlet Container(embedded tomcat)이 포함된 웹 앱을 위한 스프링부트
  - Servlet
  - MVC 패턴
  - TCP/IP 기반의 client의 요청부터 front -> servlet container -> spring 응답 까지의 네트워크 분석
