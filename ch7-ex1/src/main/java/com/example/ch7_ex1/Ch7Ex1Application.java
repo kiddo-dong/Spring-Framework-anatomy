@@ -24,6 +24,8 @@ public class Ch7Ex1Application {
 				.sorted()
 				.forEach(System.out::println);
 
-		context.close();
+		//context.close();
+
+		logger.info("Spring Starting...");
 	}
 }
