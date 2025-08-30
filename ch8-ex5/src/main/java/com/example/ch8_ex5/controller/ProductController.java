@@ -25,7 +25,7 @@ public class ProductController {
         List<Product> products = productService.findAll();
         model.addAttribute("prducts", products);
 
-        return "products.html";
+        return "products";
     }
 
     @RequestMapping(path = "/products", method = RequestMethod.POST)
@@ -42,7 +42,7 @@ public class ProductController {
         List<Product> products = productService.findAll();
 
         model.addAttribute("products", products);
-        return "products.html";
+        return "products";
     }
 
 
