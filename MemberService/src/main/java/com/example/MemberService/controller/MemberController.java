@@ -3,6 +3,7 @@ package com.example.MemberService.controller;
 import com.example.MemberService.domain.Member;
 import com.example.MemberService.service.MemberService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +21,16 @@ public class MemberController {
     public String addMember(
             @RequestParam Long id,
             @RequestParam int age,
-            @RequestParam String name
+            @RequestParam String name,
+            //@ModelAttribute Member member
+            Model model
     ){
         Member member = new Member();
         member.setId(id);
         member.setAge(age);
         member.setName(name);
+
+        model.addAttribute("member",member);
 
         memberService.addMember(member);
         return "redirect:/path";
