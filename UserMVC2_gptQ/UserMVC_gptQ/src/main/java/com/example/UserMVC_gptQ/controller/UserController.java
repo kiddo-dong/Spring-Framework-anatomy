@@ -30,7 +30,7 @@ public class UserController {
         } else {
             logger.info("not instance type of Implements");
         }
-        return "redirect:/users"; // 등록된 user 리다이렉트(view)
+        return "redirect:/users"; // 등록된 user 리다이렉트
     }
 
     @RequestMapping(path = "/users", method = RequestMethod.GET)
