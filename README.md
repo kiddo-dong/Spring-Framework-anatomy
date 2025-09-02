@@ -16,3 +16,4 @@ Spring-Boot
  - Servlet
  - MVC 패턴
  - TCP/IP 기반의 client의 요청부터 front -> servlet container -> spring 응답 까지의 네트워크 분석
+ - Architecture
