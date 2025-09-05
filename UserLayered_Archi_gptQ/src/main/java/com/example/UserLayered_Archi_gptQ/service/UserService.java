@@ -5,7 +5,6 @@ import com.example.UserLayered_Archi_gptQ.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
