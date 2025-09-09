@@ -39,7 +39,16 @@ public class Logincontroller {
         loginProcessor.setPassword(password);
 
         boolean loggedIn = loginProcessor.login();
+        // return true 시
+        // Controller -> RequestScope -> RequestScope(SessionScope)
+        // -> Session 유지 및 응답 시 쿠키 return -> 스프링에서 Session유지
+        // -> Server RAM에 Session 올림(JSESSIONID)
+        // Next Request 시 요청 스코프를 호출 로그인 또 검증??
+        //
 
+        // return false 시
+        // RequestScope에서 Session 호출 X (Session   자체를 유지 안함)-> /login retrun failmasseage
+        // 두번쨰 요청 시 Session이 없기때문에 로그인 후 검증 로직 다시 수행
         if(loggedIn){
             // 저장된 사용자 정보가 일치 시 login 및 main 페이지 리다이렉트(이동)
             model.addAttribute("message", "You are now logged in.");

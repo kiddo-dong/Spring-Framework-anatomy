@@ -6,8 +6,8 @@ import org.springframework.web.context.annotation.SessionScope;
 @Service
 @SessionScope
 public class LoggedUserManagementService {
-    
-    // login 성공 시 마다 사용자 이름을 저장
+    //ServerSessionMap<SessionID, HttpSession<"username",LoggedUserManagementService>>
+
     private String username;
 
     public String getUsername() {

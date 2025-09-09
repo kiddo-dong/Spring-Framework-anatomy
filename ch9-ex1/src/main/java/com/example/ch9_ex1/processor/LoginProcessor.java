@@ -24,6 +24,7 @@ public class LoginProcessor {
         // false 시 log Result = false 반환
         if("dh6559".equals(this.getUsername()) && "password".equals(this.getPassword())){
             logResult = true;
+
             // 세션 스코프 호출로 세션에 해당 사용자 Session 유지
             // 요청 스코프(사용자 검증) -> 세션 스코프(사용자 로그인 한 정보를 세션에 유지)
             loggedUserManagementService.setUsername(username);
