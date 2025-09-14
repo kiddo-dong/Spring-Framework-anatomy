@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+// Rest API 기초
 @RestController
 public class UserController {
     private final UserService userService;
@@ -20,11 +21,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    // id 를 Path request로 지정해서 필수로 값을 받아옴
     @GetMapping("/users/{id}")
     public Optional<User> getUserId(@PathVariable String id){
         return userService.findById(id);
     }
+    //Optional<User> 으로 User 객체를 반환 REST
 
+    // Front-End에서 Submit 등 데이터 저장시 Post 호출
     @PostMapping("/users")
     public String addUser(@RequestBody User user){
         return userService.addUser(user);
