@@ -2,6 +2,8 @@ package com.example.UserRest_gptQ2.controller;
 
 import com.example.UserRest_gptQ2.domain.User;
 import com.example.UserRest_gptQ2.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,11 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public String addUser(@RequestBody User user){
-        return userService.addUser(user);
+    public ResponseEntity<String> addUser(@RequestBody User user){
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .header("post","successed")
+                .body(userService.addUser(user));
     }
 
     @GetMapping("/users")
