@@ -1,0 +1,18 @@
+package com.example.Order_RestException.exceptionAdvice;
+
+import com.example.Order_RestException.exception.InsufficientFundsException;
+import com.example.Order_RestException.exception.InvalidOrderAmountException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class OrderAdvice {
+    
+    @ExceptionHandler({InsufficientFundsException.class,InvalidOrderAmountException.class})
+    public ResponseEntity<String> orderExceptionAdvice(){
+        return ResponseEntity
+                .badRequest()
+                .body("잔액 검증 오류");
+    }
+}
