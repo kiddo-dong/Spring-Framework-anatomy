@@ -29,7 +29,24 @@ public class UserController {
     @PostMapping
     public ResponseEntity<String> addUser(@RequestBody User user){
         userService.addUser(user);
+
         return ResponseEntity
-                .ok("Successed add User");
+                .ok("User Add Successfully");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
+
+        return ResponseEntity
+                .ok("user Deleted Successfully");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> putUpdateUser(@PathVariable int id,
+                                                @RequestBody User user){
+        userService.updateUser(id, user);
+        return ResponseEntity
+                .ok("user update(put) Successfully");
     }
 }

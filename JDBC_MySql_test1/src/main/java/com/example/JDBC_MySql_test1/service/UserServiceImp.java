@@ -24,4 +24,14 @@ public class UserServiceImp implements UserService{
     public void addUser(User user) {
         userRepository.addUser(user);
     }
+
+    @Override
+    public void deleteUser(int id) {
+        userRepository.deleteUserById(id);
+    }
+
+    @Override
+    public void updateUser(int id, User user) {
+        userRepository.updateByUser(id, user);
+    }
 }

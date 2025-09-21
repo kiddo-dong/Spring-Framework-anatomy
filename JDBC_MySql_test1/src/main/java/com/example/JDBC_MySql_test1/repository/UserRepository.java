@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserRepository {
     List<User> findAllUser();
     void addUser(User user);
+    void deleteUserById(int id);
+    void updateByUser(int id, User user);
 }

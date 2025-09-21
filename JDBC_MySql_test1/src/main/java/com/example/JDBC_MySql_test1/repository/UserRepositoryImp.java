@@ -14,7 +14,8 @@ public class UserRepositoryImp implements UserRepository{
     private final Logger logger = Logger.getLogger(UserRepositoryImp.class.getName());
 
     // MySql DB 정보
-    private String url = "jdbc:mysql://localhost:3306/SpringStudy?serverTimezone=UTC&useSSL=false";
+    // JDBC:DB정보://IP:prot/DataBase?Option
+    private String url = "jdbc:mysql://localhost:3306/Spring?serverTimezone=UTC&useSSL=false";
     private String username = "root";
     private String password = "password";
 
@@ -25,9 +26,13 @@ public class UserRepositoryImp implements UserRepository{
         // 메모리 관리를 위해 메서드 내부에서 만듦
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users";
-
+        
+        // DriverManager.getConnection으로 Driver 내부에서 TCP/IP 연결 및
+        // Connection 객체에 DB Driver에 구성정보 바인딩
         try(Connection conn = DriverManager.getConnection(url, username, password);
+            // 연결 상태에서 DB 사용을 위한 Query 주입
             PreparedStatement ps = conn.prepareStatement(sql);
+            // ResultSet으로 행 기반 데이터 return
             ResultSet rs = ps.executeQuery();
         ){
             while (rs.next()){
@@ -54,6 +59,35 @@ public class UserRepositoryImp implements UserRepository{
             ps.setInt(1, user.getId());
             ps.setString(2, user.getName());
             ps.setString(3, user.getEmail());
+            ps.executeUpdate();
+        } catch (SQLException e){
+            logger.severe("DB Error");
+        }
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        String sql = "DELETE FROM users WHERE id = ?";
+
+        try(Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            logger.severe("DB Error");
+        }
+    }
+
+    @Override
+    public void updateByUser(int id, User user){
+        String sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+        try(Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setInt(3, id);
             ps.executeUpdate();
         } catch (SQLException e){
             logger.severe("DB Error");
