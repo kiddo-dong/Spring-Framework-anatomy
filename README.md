@@ -16,10 +16,11 @@ Spring-Boot
  - Servlet (DispatcherServlet)
  - MVC 패턴
  - Architecture
+ - Contoller
  - REST
  - REST API
  - Layered Architecture
  - End-Point 호출
  - JDBC
- - JDBCTamplate
+ - JdbcTamplate
  - JPA
