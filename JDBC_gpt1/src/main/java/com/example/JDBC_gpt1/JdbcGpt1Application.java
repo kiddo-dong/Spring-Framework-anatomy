@@ -24,7 +24,8 @@ public class JdbcGpt1Application {
 			try(Statement st = conn.createStatement()){
 				st.execute("CREATE TABLE users (" +
 						"id BIGINT AUTO_INCREMENT PRIMARY KEY, " +
-						"username VARCHAR(50), email VARCHAR(100))");
+						"username VARCHAR(50)," +
+						" email VARCHAR(100))");
 			}
 
 			// INSERT 문
