@@ -10,6 +10,7 @@ import java.util.List;
 public class PurchaseRepository {
     private final JdbcTemplate jdbc;
 
+    // JDBCTemplate AutoWired
     public PurchaseRepository(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
