@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Repository
@@ -92,5 +93,29 @@ public class UserRepositoryImp implements UserRepository{
         } catch (SQLException e){
             logger.severe("DB Error");
         }
+    }
+
+    @Override
+    public Optional<User> findUserById(int id) {
+        User user = new User();
+        String sql = "SELECT * FROM users WHERE id = ?";
+
+        try(Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+
+                return  Optional.of(user);
+            }
+        } catch (SQLException e){
+            logger.severe("DB Error");
+        }
+        return Optional.empty();
     }
 }

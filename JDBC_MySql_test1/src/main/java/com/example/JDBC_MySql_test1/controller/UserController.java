@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 // REST API
 @RestController
@@ -48,5 +49,11 @@ public class UserController {
         userService.updateUser(id, user);
         return ResponseEntity
                 .ok("user update(put) Successfully");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<User>> findUser(@PathVariable int id){
+        return ResponseEntity
+                .ok(userService.findUser(id));
     }
 }

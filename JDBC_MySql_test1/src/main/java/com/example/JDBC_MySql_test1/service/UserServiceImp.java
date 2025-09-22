@@ -5,6 +5,7 @@ import com.example.JDBC_MySql_test1.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService{
@@ -33,5 +34,10 @@ public class UserServiceImp implements UserService{
     @Override
     public void updateUser(int id, User user) {
         userRepository.updateByUser(id, user);
+    }
+
+    @Override
+    public Optional<User> findUser(int id) {
+        return userRepository.findUserById(id);
     }
 }
