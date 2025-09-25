@@ -21,6 +21,7 @@ Spring-Boot
  - REST API
  - Layered Architecture
  - End-Point 호출
- - JDBC
+ - JDBC(1.0 ~ 4.3)
  - JdbcTamplate
  - JPA
+ - Transaction
