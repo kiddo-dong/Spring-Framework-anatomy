@@ -1,4 +1,4 @@
-package com.example.ch12_ex1.domain;
+package com.example.ch12_ex1.purchase.domain;
 
 import java.math.BigDecimal;
 
