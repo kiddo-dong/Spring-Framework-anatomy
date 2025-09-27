@@ -4,6 +4,7 @@ import com.example.MemberCRUD_JdbcTemplate.Member.domain.Member;
 import com.example.MemberCRUD_JdbcTemplate.Member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +33,10 @@ public class MemberServiceImp implements MemberService{
     @Override
     public void deleteMemberById(int id) {
         memberRepository.deleteMemberById(id);
+    }
+
+    @Override
+    public List<Member> findUsers(){
+        memberRepository.findUsers();
     }
 }

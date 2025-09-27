@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -68,5 +69,22 @@ public class MemberRepositoryImp implements MemberRepository{
                 sql,
                 id
                 );
+    }
+
+    @Override
+    public List<Member> findUsers(){
+        String sql = "SELECT * FROM members";
+        RowMapper<Member> rowMapper = (rs, rowNum) -> {
+            Member member = new Member();
+            member.setAge(rs.getInt("id"));
+            member.setName(rs.getString("name"));
+            member.setEmail(rs.getString("email"));
+            member.setAge(rs.getInt("age"));
+
+            return member;
+        };
+
+        List<Member> memberList = jdbcTemplate.query(sql, rowMapper);
+        return  memberList;
     }
 }

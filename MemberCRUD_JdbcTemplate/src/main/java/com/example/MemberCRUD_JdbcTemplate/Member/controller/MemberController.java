@@ -5,6 +5,7 @@ import com.example.MemberCRUD_JdbcTemplate.Member.service.MemberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -41,5 +42,11 @@ public class MemberController {
         memberService.deleteMemberById(id);
         return ResponseEntity
                 .ok("Delete Member Successfully");
+    }
+
+    @PostMapping("/MemberList")
+    public ResponseEntity<List<Member>> findMembers(){
+        return ResponseEntity
+                .ok(memberService.findUsers());
     }
 }
