@@ -37,6 +37,6 @@ public class MemberServiceImp implements MemberService{
 
     @Override
     public List<Member> findUsers(){
-        memberRepository.findUsers();
+        return memberRepository.findUsers();
     }
 }
