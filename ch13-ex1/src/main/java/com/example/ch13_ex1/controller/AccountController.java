@@ -18,10 +18,11 @@ public class AccountController {
     public AccountController(TransferService transferService) {
         this.transferService = transferService;
     }
-
+    
+    // Transaction 호출
     @PostMapping("/transfer")
-    public ResponseEntity<String> transeferMoney(@RequestBody TransferRequestDTO request){
-        transferService.treansferMoney(
+    public ResponseEntity<String> transferMoney(@RequestBody TransferRequestDTO request){
+        transferService.transferMoney(
                 request.getSenderAccountId(),
                 request.getReceiverAccountId(),
                 request.getAmount()

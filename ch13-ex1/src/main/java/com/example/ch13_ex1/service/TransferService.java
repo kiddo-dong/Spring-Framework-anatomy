@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class TransferService {
 
     private final AccountRepository accountRepository;
@@ -18,8 +18,8 @@ public class TransferService {
         this.accountRepository = accountRepository;
     }
 
-    //@Transactional
-    public void treansferMoney(long idSender,
+    @Transactional
+    public void transferMoney(long idSender,
                                long idReceiver,
                                BigDecimal amount){
 
@@ -35,7 +35,7 @@ public class TransferService {
         accountRepository.changeAmount(idSender, senderNewAmount);
         accountRepository.changeAmount(idReceiver, receiverNewAmount);
 
-        throw new RuntimeException("Transation error service rollback");
+        //throw new RuntimeException("Transation error service rollback");
     }
 
     public List<Account> getAllAccounts(){
