@@ -5,11 +5,14 @@ import com.example.Board_JdbcTemplate.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/api/posts")
 public class PostController {
 
     private final PostService postService;
@@ -20,10 +23,12 @@ public class PostController {
 
     // POST addPost
     @PostMapping
-    public ResponseEntity<String> addPost(@RequestBody Post post){
+    public ResponseEntity<Map<String, String>> addPost(@RequestBody Post post){
         postService.addPost(post);
+        Map<String, String> map = new HashMap<>();
+        map.put("message","add Post Successfully");
         return ResponseEntity
-                .ok("add Post Successfully");
+                .ok(map);
     }
 
     // GET Post List
@@ -36,24 +41,32 @@ public class PostController {
     // GET Post Object
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Post>> findById(@PathVariable Long id){
+
         return ResponseEntity
                 .ok(postService.findById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updatePostById(@PathVariable Long id,
+    public ResponseEntity<Map<String,String>> updatePostById(@PathVariable Long id,
                                                  @RequestBody Post post){
         postService.updatePostById(id, post);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("message","update Post Successfully");
         return ResponseEntity
-                .ok("update Post Successfully");
+                .ok(map);
     }
 
     // DELETE post
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePostById(@PathVariable Long id){
+    public ResponseEntity<Map<String, String>> deletePostById(@PathVariable Long id){
         postService.deletePostById(id);
+
+        Map<String,String> map = new HashMap<>();
+        map.put("message","delete Post Successfully");
+
         return ResponseEntity
-                .ok("delete Post Successfully");
+                .ok(map);
     }
 
 }
