@@ -26,3 +26,7 @@ Spring-Boot
  - JPA
  - Transaction
  - TestCode
+
+MiniBoard-Program
+ - JdbcTamplate + JWT를 이용한 게시판 프로그램
+ - JPA + JWT를 이용한 게시판 프로그램
