@@ -1,12 +1,14 @@
 package com.example.Board_JdbcTemplate.posts.controller;
 
+import com.example.Board_JdbcTemplate.posts.domain.PostListResponseDto;
 import com.example.Board_JdbcTemplate.posts.domain.PostRequestDto;
-import com.example.Board_JdbcTemplate.posts.domain.PostResponseDto;
+import com.example.Board_JdbcTemplate.posts.domain.PostObjectResponseDto;
 import com.example.Board_JdbcTemplate.posts.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -35,12 +37,18 @@ public class PostController {
     }
 
     @GetMapping("/{post_id}")
-    public ResponseEntity<Optional<PostResponseDto>> findPostById(@PathVariable Long post_id){
+    public ResponseEntity<Optional<PostObjectResponseDto>> findPostById(@PathVariable Long post_id){
         return ResponseEntity
                 .ok(postService.findPostById(post_id));
     }
 
-    @PostMapping("/{post_id}")
+    @GetMapping
+    public ResponseEntity<List<PostListResponseDto>> findPostAll(){
+        return  ResponseEntity
+                .ok(postService.findAllPosts());
+    }
+
+    @PutMapping("/{post_id}")
     public ResponseEntity<Map<String, String>> updatePostById(
             @PathVariable Long post_id,
             @RequestBody PostRequestDto postRequestDto

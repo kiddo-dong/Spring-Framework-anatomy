@@ -2,11 +2,10 @@ package com.example.Board_JdbcTemplate.posts.domain;
 
 import java.sql.Timestamp;
 
-public class PostResponseDto {
+public class PostListResponseDto {
     private Long post_id;
     private String nickname;
     private String title;
-    private String content;
     private Timestamp created_at;
     private Timestamp updated_at;
 
@@ -34,14 +33,6 @@ public class PostResponseDto {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Timestamp getCreated_at() {
         return created_at;
     }
@@ -58,3 +49,4 @@ public class PostResponseDto {
         this.updated_at = updated_at;
     }
 }
+

@@ -1,7 +1,8 @@
 package com.example.Board_JdbcTemplate.posts.service;
 
+import com.example.Board_JdbcTemplate.posts.domain.PostListResponseDto;
 import com.example.Board_JdbcTemplate.posts.domain.PostRequestDto;
-import com.example.Board_JdbcTemplate.posts.domain.PostResponseDto;
+import com.example.Board_JdbcTemplate.posts.domain.PostObjectResponseDto;
 import com.example.Board_JdbcTemplate.posts.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +25,12 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
-    public Optional<PostResponseDto> findPostById(Long post_id) {
+    public Optional<PostObjectResponseDto> findPostById(Long post_id) {
         return postRepository.findPostById(post_id);
     }
 
     @Override
-    public List<PostResponseDto> findAllPosts() {
+    public List<PostListResponseDto> findAllPosts() {
         return postRepository.findAllPosts();
     }
 

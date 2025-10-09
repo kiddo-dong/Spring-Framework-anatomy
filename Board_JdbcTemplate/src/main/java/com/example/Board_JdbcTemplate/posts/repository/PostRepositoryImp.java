@@ -1,8 +1,10 @@
 package com.example.Board_JdbcTemplate.posts.repository;
 
+import com.example.Board_JdbcTemplate.posts.domain.PostListResponseDto;
 import com.example.Board_JdbcTemplate.posts.domain.PostRequestDto;
-import com.example.Board_JdbcTemplate.posts.domain.PostResponseDto;
-import com.example.Board_JdbcTemplate.posts.rowMapper.PostResponseDtoRowMapper;
+import com.example.Board_JdbcTemplate.posts.domain.PostObjectResponseDto;
+import com.example.Board_JdbcTemplate.posts.rowMapper.PostListResponseDtoRowMapper;
+import com.example.Board_JdbcTemplate.posts.rowMapper.PostObjectResponseDtoRowMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -32,19 +34,19 @@ public class PostRepositoryImp implements PostRepository {
 
     // Posts R Object
     @Override
-    public Optional<PostResponseDto> findPostById(Long post_id){
+    public Optional<PostObjectResponseDto> findPostById(Long post_id){
         String sql = "SELECT p.post_id, p.title, p.content, u.nickname, p.created_at, p.updated_at " +
                 "FROM posts p " +
                 "JOIN users u ON p.user_id = u.user_id " +
                 "WHERE p.post_id = ?";
         try {
-            PostResponseDto postResponseDto = jdbcTemplate.queryForObject(
+            PostObjectResponseDto postObjectResponseDto = jdbcTemplate.queryForObject(
                     sql,
-                    new PostResponseDtoRowMapper(),
+                    new PostObjectResponseDtoRowMapper(),
                     post_id
             );
 
-            return Optional.ofNullable(postResponseDto);
+            return Optional.ofNullable(postObjectResponseDto);
 
         } catch (EmptyResultDataAccessException e){
             return Optional.empty();
@@ -53,8 +55,8 @@ public class PostRepositoryImp implements PostRepository {
 
     // Posts R List(All)
     @Override
-    public List<PostResponseDto> findAllPosts(){
-        String sql = "SELECT p.post_id, p.title, p.content, u.nickname, p.created_at, p.updated_at " +
+    public List<PostListResponseDto> findAllPosts(){
+        String sql = "SELECT p.post_id, p.title, u.nickname, p.created_at, p.updated_at " +
                 "FROM posts p " +
                 "JOIN users u ON p.user_id = u.user_id " +
                 "ORDER BY p.created_at DESC " +
@@ -62,7 +64,7 @@ public class PostRepositoryImp implements PostRepository {
 
         return jdbcTemplate.query(
                 sql,
-                new PostResponseDtoRowMapper()
+                new PostListResponseDtoRowMapper()
         );
     }
 
