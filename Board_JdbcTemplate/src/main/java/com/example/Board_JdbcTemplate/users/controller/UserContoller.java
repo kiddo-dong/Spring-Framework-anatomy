@@ -34,15 +34,17 @@ public class UserContoller {
                 .ok(map);
     }
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/{user_id}") // URL 경로에 id값,
     public ResponseEntity<Optional<UserResponseDto>> findUser(@PathVariable Long user_id){
         return ResponseEntity
                 .ok(userService.findUserById(user_id));
     }
 
-    @PutMapping("/{user_id}")
-    public ResponseEntity<Map<String, String>> updateUserById(@PathVariable Long user_id,
-                                                              @RequestBody UserRequestDto userRequestDto){
+    @PutMapping("/{user_id}") // URL 경로에 id값, 요청 Body에 JSON 객체
+    public ResponseEntity<Map<String, String>> updateUserById(
+            @PathVariable Long user_id,
+            @RequestBody UserRequestDto userRequestDto
+    ){
 
         userService.updateUserById(user_id, userRequestDto);
 
