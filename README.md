@@ -30,3 +30,10 @@ Spring-Boot
 MiniBoard-Program
  - JdbcTamplate + JWT를 이용한 게시판 프로그램
  - JPA + JWT를 이용한 게시판 프로그램
+
+Java에서 사용하는 다양한 기술들
+- getter/setter 직접생성 VS Lombok
+- 직접 Mapping VS MapStruct 라이브러리
+- Reflection
+- 연관관계 조회 시 JPA의 1:N fetch join + 컬렉션 초기화 방식 때문에 생기는 현상
+- N+1 방지 관련
